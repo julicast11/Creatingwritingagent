@@ -57,7 +57,46 @@ const ALL_STEPS = [
     title: 'Fill in CLAUDE.md',
     shortTitle: 'CLAUDE.md',
     stage: 'configure',
-    explanation: 'This is the most important file. Claude Code reads it every session. It defines who you are, how you write, and what rules to follow.',
+    explanation: 'This is the most important file. Claude Code reads it every session. Before filling it in manually, use this prompt in Claude chat (claude.ai, not Claude Code) to analyze your writing voice automatically.',
+    voicePrompt: true,
+    voicePromptText: `You are a brand voice analyst who studies writing patterns to create detailed voice profiles for content teams.
+
+I'm going to give you 3-5 pieces of my best content. Analyze them and extract my unique writing voice.
+
+Here are my content samples:
+
+[PASTE 3-5 OF YOUR BEST POSTS, ARTICLES, OR NEWSLETTERS HERE — the ones that sound most "like you" and performed well]
+
+Your tasks:
+
+1. Analyze my writing patterns across all samples. Identify:
+   - Average sentence length (short and punchy? Long and flowing? Mixed?)
+   - Paragraph structure (how many sentences per paragraph?)
+   - Opening style (how do I start pieces? Questions? Statements? Stories?)
+   - Transition style (how do I move between ideas?)
+   - Closing style (how do I end pieces?)
+
+2. Identify my tone markers:
+   - Formality level (1-10 scale, with examples)
+   - Humor style (if any)
+   - Energy level (calm? High energy? Conversational?)
+   - Confidence style (authoritative? Humble? Direct?)
+
+3. Extract my vocabulary patterns:
+   - Words and phrases I use repeatedly
+   - Words and phrases I NEVER use
+   - Industry jargon I use vs. avoid
+   - Emoji usage (yes/no, which ones, how often?)
+
+4. Identify my structural habits:
+   - Do I use bullet points or prose?
+   - Do I use bold/italics? How?
+   - Do I use questions to the reader?
+   - Do I use "you" or "we" or "I"?
+   - Any signature phrases or patterns?
+
+5. Write a "Voice Profile" (150-200 words) formatted as clear rules, not descriptions. Example: "Use short sentences. Max 2 sentences per paragraph. Never say 'utilize' — say 'use'."`,
+    voicePromptTip: 'Pick content that got the best engagement AND sounds most like you. Skip anything ghostwritten or heavily edited by someone else.',
     codeContent: {
       lines: [
         { type: 'heading', text: '# [Your Name] — Content Writing Instructions' },
@@ -72,7 +111,7 @@ const ALL_STEPS = [
         { type: 'comment', text: '[Who reads your content and what they care about.]' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Voice & Tone' },
-        { type: 'comment', text: '[How you write. Sentence rhythm. Opening and closing style.]' },
+        { type: 'comment', text: '[Paste the Voice Profile output from the prompt above here.]' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Topics I Write About' },
         { type: 'comment', text: '[Your content areas.]' },
@@ -348,6 +387,9 @@ const ALL_STEPS = [
   }
 ];
 
+/* Voice prompt text for copy button */
+const voicePromptFull = ALL_STEPS.find(s => s.id === 3).voicePromptText;
+
 /* ════════════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════════════ */
@@ -532,6 +574,23 @@ function renderCard() {
   // Explanation
   if (step.explanation) {
     html += `<p class="card-explanation">${step.explanation}</p>`;
+  }
+
+  // Voice prompt (for CLAUDE.md step)
+  if (step.voicePrompt) {
+    html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-bottom:16px;">';
+    html += '<span class="box-icon">💬</span>';
+    html += '<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your CLAUDE.md.</span>';
+    html += '</div>';
+    html += '<p class="card-sub-heading">Voice Analysis Prompt — copy and paste into Claude chat:</p>';
+    html += `<div class="code-content-block" style="max-height:320px;overflow-y:auto;position:relative;">`;
+    html += `<button class="copy-btn" style="position:sticky;top:0;float:right;margin:-4px -4px 8px 8px;z-index:2;" onclick="copyCmd(this, voicePromptFull)">Copy Prompt</button>`;
+    html += `<pre style="margin:0;">${escHtml(step.voicePromptText)}</pre>`;
+    html += '</div>';
+    if (step.voicePromptTip) {
+      html += `<div class="tip-box"><span class="box-icon">💡</span><span>${step.voicePromptTip}</span></div>`;
+    }
+    html += '<p class="card-sub-heading" style="margin-top:24px;">Then fill in your CLAUDE.md with this structure:</p>';
   }
 
   // Commands
