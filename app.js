@@ -65,7 +65,7 @@ I'm going to give you 3-5 pieces of my best content. Analyze them and extract my
 
 Here are my content samples:
 
-[PASTE 3-5 OF YOUR BEST POSTS, ARTICLES, OR NEWSLETTERS HERE — the ones that sound most "like you" and performed well]
+[PASTE 3-5 OF YOUR BEST POSTS, ARTICLES, OR NEWSLETTERS HERE. Pick the ones that sound most "like you" and performed well]
 
 Your tasks:
 
@@ -95,11 +95,11 @@ Your tasks:
    - Do I use "you" or "we" or "I"?
    - Any signature phrases or patterns?
 
-5. Write a "Voice Profile" (150-200 words) formatted as clear rules, not descriptions. Example: "Use short sentences. Max 2 sentences per paragraph. Never say 'utilize' — say 'use'."`,
+5. Write a "Voice Profile" (150-200 words) formatted as clear rules, not descriptions. Example: "Use short sentences. Max 2 sentences per paragraph. Never say 'utilize'. Say 'use' instead."`,
     voicePromptTip: 'Pick content that got the best engagement AND sounds most like you. Skip anything ghostwritten or heavily edited by someone else.',
     codeContent: {
       lines: [
-        { type: 'heading', text: '# [Your Name] — Content Writing Instructions' },
+        { type: 'heading', text: '# [Your Name] - Content Writing Instructions' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Who I Am' },
         { type: 'comment', text: '[Your role, school, or job. Key credentials. Mission statement.]' },
@@ -120,7 +120,7 @@ Your tasks:
         { type: 'normal', text: '- No buzzwords: [list yours]' },
         { type: 'normal', text: '- No filler openers: [list yours]' },
         { type: 'normal', text: '- No filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead' },
         { type: 'comment', text: '- [Add your own rules]' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Language' },
@@ -152,7 +152,7 @@ Your tasks:
     explanation: 'Define how Claude writes emails for you. This template covers structure, tone, and audience-specific rules.',
     codeContent: {
       lines: [
-        { type: 'heading', text: '# Email Template — [Your Name]' },
+        { type: 'heading', text: '# Email Template - [Your Name]' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Structure' },
         { type: 'normal', text: '1. Opening (1 sentence): Direct. State the purpose immediately.' },
@@ -164,7 +164,7 @@ Your tasks:
         { type: 'normal', text: '- Subject line: specific, not vague' },
         { type: 'normal', text: '- No more than 3 paragraphs for most emails' },
         { type: 'normal', text: '- Sign off: "Best, [Name]" or "Thank you, [Name]"' },
-        { type: 'normal', text: '- Mobile-friendly length — if it needs scrolling, it\'s too long' },
+        { type: 'normal', text: '- Mobile-friendly length. If it needs scrolling, it\'s too long' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Tone' },
         { type: 'normal', text: '- Professional but warm. Never stiff.' },
@@ -183,7 +183,7 @@ Your tasks:
         { type: 'normal', text: '- "I just wanted to follow up"' },
         { type: 'normal', text: '- "Please let me know if you have any questions"' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead' },
         { type: 'normal', text: '- Over-apologizing or over-thanking' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Audience Tone Guide' },
@@ -207,7 +207,7 @@ Your tasks:
     explanation: 'Define how Claude writes LinkedIn posts for you. Structure, rhythm, and what to avoid.',
     codeContent: {
       lines: [
-        { type: 'heading', text: '# LinkedIn Post Template — [Your Name]' },
+        { type: 'heading', text: '# LinkedIn Post Template - [Your Name]' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Structure' },
         { type: 'normal', text: '1. Opening (1 sentence): Declarative. Never a question.' },
@@ -233,7 +233,7 @@ Your tasks:
         { type: 'heading', text: '## What to Avoid' },
         { type: 'normal', text: '- Filler openers: "I\'ve always been passionate about..."' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead' },
         { type: 'normal', text: '- Ending with a question' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Audience Tone Guide' },
@@ -257,7 +257,7 @@ Your tasks:
     explanation: 'For reports, articles, academic writing, and case studies. This template ensures Claude writes with precision and structure.',
     codeContent: {
       lines: [
-        { type: 'heading', text: '# Long-Form Writing Template — [Your Name]' },
+        { type: 'heading', text: '# Long-Form Writing Template - [Your Name]' },
         { type: 'comment', text: '## Use for: reports, articles, academic writing, case studies' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Structure' },
@@ -283,7 +283,7 @@ Your tasks:
         { type: 'normal', text: '- "In conclusion" or "In summary" to open the closing' },
         { type: 'normal', text: '- Vague claims without data' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Audience Tone Guide' },
         { type: 'normal', text: '- Professor: precise, well-structured, evidence-backed' },
@@ -306,7 +306,7 @@ Your tasks:
     explanation: 'For presentations, defenses, and client decks. Every presentation is a story first, slides second.',
     codeContent: {
       lines: [
-        { type: 'heading', text: '# Slides Template — [Your Name]' },
+        { type: 'heading', text: '# Slides Template - [Your Name]' },
         { type: 'comment', text: '## Use for: presentations, defenses, client decks' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## The Most Important Rule' },
@@ -314,14 +314,14 @@ Your tasks:
         { type: 'normal', text: 'If the story does not work, the slides do not matter.' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Story Arc' },
-        { type: 'normal', text: '- Act 1 — Hook: a number, moment, or scenario that makes them lean in' },
-        { type: 'normal', text: '- Act 2 — Tension: the problem, the gap, what\'s at stake' },
-        { type: 'normal', text: '- Act 3 — Resolution: findings, recommendations, the path forward' },
+        { type: 'normal', text: '- Act 1, Hook: a number, moment, or scenario that makes them lean in' },
+        { type: 'normal', text: '- Act 2, Tension: the problem, the gap, what\'s at stake' },
+        { type: 'normal', text: '- Act 3, Resolution: findings, recommendations, the path forward' },
         { type: 'normal', text: '- Closing: callback to the hook. End on impact, not "thank you."' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Rubric & Requirements' },
         { type: 'normal', text: '- Always read the brief for required sections before building the arc' },
-        { type: 'normal', text: '- Required sections must appear — frame them within the story' },
+        { type: 'normal', text: '- Required sections must appear. Frame them within the story' },
         { type: 'normal', text: '- Fit the story around the requirements, not the other way around' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Format Rules' },
@@ -334,7 +334,7 @@ Your tasks:
         { type: 'normal', text: '- Opening with "Today I will be presenting..."' },
         { type: 'normal', text: '- Slide titles that are just nouns' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## Audience Tone Guide' },
         { type: 'normal', text: '- Professor: precise, well-structured, evidence-backed' },
@@ -474,7 +474,7 @@ Your tasks:
           'echo \'alias writer="cd ~/path/to/Your\\ Name\\ Tone && claude"\' >> ~/.zshrc',
           'source ~/.zshrc'
         ],
-        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code> — it will open your folder and launch Claude with your voice profile ready to go.'
+        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code>. It will open your folder and launch Claude with your voice profile ready to go.'
       },
       windows: {
         intro: 'Run this in your terminal (Git Bash or WSL):',
@@ -482,12 +482,12 @@ Your tasks:
           'echo \'alias writer="cd ~/path/to/Your\\ Name\\ Tone && claude"\' >> ~/.bashrc',
           'source ~/.bashrc'
         ],
-        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code> — it will open your folder and launch Claude with your voice profile ready to go.'
+        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code>. It will open your folder and launch Claude with your voice profile ready to go.'
       }
     },
     quickLaunchPoints: [
       'Every time you want to use your writing agent, you just need to open the folder and run Claude. Two commands, every time.',
-      'To make it even faster, add a permanent shortcut alias. Pick your operating system below — two commands and you\'re done.',
+      'To make it even faster, add a permanent shortcut alias. Pick your operating system below. Two commands and you\'re done.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ]
   }
@@ -713,7 +713,7 @@ function renderCard() {
     html += '<span class="box-icon">💬</span>';
     html += '<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your CLAUDE.md.</span>';
     html += '</div>';
-    html += '<p class="card-sub-heading">Voice Analysis Prompt — copy and paste into Claude chat:</p>';
+    html += '<p class="card-sub-heading">Voice Analysis Prompt (copy and paste into Claude chat):</p>';
     html += `<div class="code-block-header"><button class="copy-btn" onclick="copyCmd(this, voicePromptFull)">Copy Prompt</button></div>`;
     html += `<div class="code-content-block">`;
     html += `<pre>${escHtml(step.voicePromptText)}</pre>`;
