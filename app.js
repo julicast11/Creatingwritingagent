@@ -632,24 +632,28 @@ function renderSidebar() {
 
 /* ── Progress bar & dots ── */
 function renderProgress() {
-  const total = ALL_STEPS.length;
-  const done = ALL_STEPS.filter(s => progress[s.id]).length;
-  const pct = total > 0 ? (done / total * 100) : 0;
+  const stage = stageOf(currentStep());
+  const stageSteps = stepsForStage(stage);
+  const stageTotal = stageSteps.length;
+  const stageDone = stageSteps.filter(s => progress[s.id]).length;
+  const stagePct = stageTotal > 0 ? (stageDone / stageTotal * 100) : 0;
+  const stageIndex = stageSteps.findIndex(s => s.id === currentStep().id);
 
-  document.getElementById('progressBarFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `${done} of ${total} completed`;
-  document.getElementById('stepCounter').textContent = `Step ${currentStepIndex + 1} of ${total}`;
+  document.getElementById('progressBarFill').style.width = stagePct + '%';
+  document.getElementById('progressLabel').textContent = `${stageDone} of ${stageTotal} completed`;
+  document.getElementById('stepCounter').textContent = `Step ${stageIndex + 1} of ${stageTotal}`;
 
   const dotsEl = document.getElementById('progressDots');
-  dotsEl.innerHTML = ALL_STEPS.map((step, i) => {
+  dotsEl.innerHTML = stageSteps.map((step, i) => {
     let cls = 'prog-dot';
     if (progress[step.id]) cls += ' dot-done';
-    if (i === currentStepIndex) cls += ' dot-current';
+    if (step.id === currentStep().id) cls += ' dot-current';
     return `<span class="${cls}" onclick="goToStep(${step.id})" title="${step.shortTitle}"></span>`;
   }).join('');
 
   // Check if all done
-  if (done === total) {
+  const allDone = ALL_STEPS.every(s => progress[s.id]);
+  if (allDone) {
     setTimeout(() => showScreen('successScreen'), 400);
   }
 }
