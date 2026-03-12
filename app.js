@@ -946,12 +946,13 @@ function buildCopyData(step) {
 }
 
 function copyCmd(btn, text) {
+  const originalLabel = btn.textContent;
   navigator.clipboard.writeText(text).then(() => {
     btn.classList.add('copied');
     btn.textContent = 'Copied!';
     setTimeout(() => {
       btn.classList.remove('copied');
-      btn.textContent = 'Copy';
+      btn.textContent = originalLabel;
     }, 1500);
   });
 }
