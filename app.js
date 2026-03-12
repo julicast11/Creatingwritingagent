@@ -467,10 +467,37 @@ Your tasks:
       'cd "Your Name Tone"',
       'claude'
     ],
-    quickLaunchAlias: 'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+    quickLaunchAlias: {
+      mac: {
+        steps: [
+          'Open Terminal and run this command to open your shell profile:',
+          'Add this alias at the bottom of the file, then save and close:',
+          'Back in Terminal, reload the profile so the alias takes effect:',
+          'Now just type <code>writer</code> from anywhere and your agent opens!'
+        ],
+        commands: [
+          'open ~/.zshrc',
+          'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+          'source ~/.zshrc'
+        ]
+      },
+      windows: {
+        steps: [
+          'Open Git Bash or WSL terminal and run this command to open your shell profile:',
+          'Add this alias at the bottom of the file, then save and close:',
+          'Back in the terminal, reload the profile so the alias takes effect:',
+          'Now just type <code>writer</code> from anywhere and your agent opens!'
+        ],
+        commands: [
+          'nano ~/.bashrc',
+          'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+          'source ~/.bashrc'
+        ]
+      }
+    },
     quickLaunchPoints: [
       'Every time you want to use your writing agent, you just need to open the folder and run Claude. Two commands, every time.',
-      'To make it even faster, add a shortcut alias to your shell profile (~/.zshrc on Mac or ~/.bashrc on Windows/Linux). Then you just type "writer" from anywhere and your writing agent opens ready to go.',
+      'To make it even faster, add a permanent shortcut alias. Pick your operating system below and follow the steps — then you just type "writer" from anywhere and your writing agent opens ready to go.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ]
   }
@@ -792,10 +819,48 @@ function renderCard() {
     html += '<ul class="card-bullets" style="margin-top:14px;">';
     html += `<li>${step.quickLaunchPoints[1]}</li>`;
     html += '</ul>';
-    html += `<div class="cmd-block">
-      <code>${escHtml(step.quickLaunchAlias)}</code>
-      <button class="copy-btn" data-copy-id="alias" onclick="copyFromData(this)">Copy</button>
-    </div>`;
+
+    // OS toggle tabs
+    html += '<div class="os-toggle-wrap">';
+    html += '  <div class="os-toggle-tabs">';
+    html += '    <button class="os-toggle-tab os-toggle-active" onclick="switchOS(\'mac\', this)">Mac</button>';
+    html += '    <button class="os-toggle-tab" onclick="switchOS(\'windows\', this)">Windows / Linux</button>';
+    html += '  </div>';
+
+    // Mac instructions
+    const mac = step.quickLaunchAlias.mac;
+    html += '  <div class="os-toggle-panel" id="osPanel-mac">';
+    html += '    <ol class="os-instructions">';
+    mac.steps.forEach((s, i) => {
+      html += `<li>${s}`;
+      if (mac.commands[i]) {
+        html += `<div class="cmd-block" style="margin:8px 0 4px;">
+          <code>${escHtml(mac.commands[i])}</code>
+          <button class="copy-btn" onclick="copyCmd(this, '${escAttr(mac.commands[i])}')">Copy</button>
+        </div>`;
+      }
+      html += '</li>';
+    });
+    html += '    </ol>';
+    html += '  </div>';
+
+    // Windows instructions
+    const win = step.quickLaunchAlias.windows;
+    html += '  <div class="os-toggle-panel hidden" id="osPanel-windows">';
+    html += '    <ol class="os-instructions">';
+    win.steps.forEach((s, i) => {
+      html += `<li>${s}`;
+      if (win.commands[i]) {
+        html += `<div class="cmd-block" style="margin:8px 0 4px;">
+          <code>${escHtml(win.commands[i])}</code>
+          <button class="copy-btn" onclick="copyCmd(this, '${escAttr(win.commands[i])}')">Copy</button>
+        </div>`;
+      }
+      html += '</li>';
+    });
+    html += '    </ol>';
+    html += '  </div>';
+    html += '</div>';
     html += '<ul class="card-bullets" style="margin-top:14px;">';
     html += `<li>${step.quickLaunchPoints[2]}</li>`;
     html += '</ul>';
@@ -943,6 +1008,15 @@ function buildCopyData(step) {
   if (step.quickLaunchAlias) {
     copyDataStore['alias'] = step.quickLaunchAlias;
   }
+}
+
+function switchOS(os, btn) {
+  // Toggle tabs
+  btn.parentElement.querySelectorAll('.os-toggle-tab').forEach(t => t.classList.remove('os-toggle-active'));
+  btn.classList.add('os-toggle-active');
+  // Toggle panels
+  document.getElementById('osPanel-mac').classList.toggle('hidden', os !== 'mac');
+  document.getElementById('osPanel-windows').classList.toggle('hidden', os !== 'windows');
 }
 
 function copyCmd(btn, text) {
