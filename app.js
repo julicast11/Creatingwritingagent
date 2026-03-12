@@ -417,6 +417,10 @@ Your tasks:
       {
         heading: 'For complex pieces with a rubric, use a brief:',
         example: 'Read CLAUDE.md, templates/slides.md, and content/briefs/brief-001.md.\nWrite a presentation following my voice, template, and brief.\nSave to content/drafts/brief-001-draft.md'
+      },
+      {
+        heading: 'For higher accuracy, tell it to plan first:',
+        example: 'Read CLAUDE.md and templates/linkedin-post.md then read content/briefs/brief-001.md.\nBefore writing anything, ask me clarifying questions about the audience, goal, and tone.\nThen propose an outline for my approval. Only start writing after I confirm the plan.'
       }
     ]
   },
