@@ -722,7 +722,11 @@ function renderCard() {
     if (step.voicePromptTip) {
       html += `<div class="tip-box"><span class="box-icon">💡</span><span>${step.voicePromptTip}</span></div>`;
     }
-    html += '<p class="card-sub-heading" style="margin-top:24px;">Then fill in your CLAUDE.md with this structure:</p>';
+    html += '<div class="warn-box" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;margin-top:20px;margin-bottom:16px;">';
+    html += '<span class="box-icon">✅</span>';
+    html += '<span><strong>Next:</strong> Copy the template below and paste it into your CLAUDE.md file. Use the Voice Profile output from the prompt above to fill in the sections, especially Voice &amp; Tone. This template is what Claude reads every session to write in your voice.</span>';
+    html += '</div>';
+    html += '<p class="card-sub-heading">CLAUDE.md Template (copy and paste into your CLAUDE.md file):</p>';
   }
 
   // Commands
@@ -737,6 +741,7 @@ function renderCard() {
 
   // Code content block (template previews)
   if (step.codeContent) {
+    html += `<div class="code-block-header"><button class="copy-btn" data-copy-id="codeContent-${step.id}" onclick="copyFromData(this)">Copy Prompt</button></div>`;
     html += '<div class="code-content-block"><pre>';
     step.codeContent.lines.forEach(line => {
       if (line.type === 'heading') {
@@ -763,9 +768,9 @@ function renderCard() {
 
   // Refine table
   if (step.refineTable) {
-    html += '<table class="refine-table"><thead><tr><th>You say</th><th>What it does</th></tr></thead><tbody>';
+    html += '<table class="refine-table"><thead><tr><th>You say</th><th>What it does</th><th></th></tr></thead><tbody>';
     step.refineTable.forEach(row => {
-      html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td></tr>`;
+      html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td><td><button class="copy-btn copy-btn-sm" onclick="copyCmd(this, '${escAttr(row.say)}')">Copy</button></td></tr>`;
     });
     html += '</tbody></table>';
   }
@@ -786,9 +791,9 @@ function renderCard() {
     }
     if (step.memoryExamples) {
       html += '<p class="card-sub-heading" style="margin-top:16px;">Memory Commands You Can Use</p>';
-      html += '<table class="refine-table"><thead><tr><th>You say</th><th>What it does</th></tr></thead><tbody>';
+      html += '<table class="refine-table"><thead><tr><th>You say</th><th>What it does</th><th></th></tr></thead><tbody>';
       step.memoryExamples.forEach(row => {
-        html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td></tr>`;
+        html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td><td><button class="copy-btn copy-btn-sm" onclick="copyCmd(this, '${escAttr(row.say)}')">Copy</button></td></tr>`;
       });
       html += '</tbody></table>';
     }
@@ -991,6 +996,9 @@ function buildCopyData(step) {
   }
   if (step.quickLaunchAlias) {
     copyDataStore['alias'] = step.quickLaunchAlias;
+  }
+  if (step.codeContent) {
+    copyDataStore['codeContent-' + step.id] = step.codeContent.lines.map(l => l.text).join('\n');
   }
 }
 

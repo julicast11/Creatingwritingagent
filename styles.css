@@ -592,6 +592,14 @@ body {
 }
 .copy-btn:hover { background: rgba(255,255,255,.18); }
 .copy-btn.copied { background: var(--green); border-color: var(--green); color: #fff; }
+.copy-btn-sm {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  font-size: .68rem;
+  padding: 3px 10px;
+}
+.copy-btn-sm:hover { background: var(--blue-d); }
 
 /* Code content block (multiline) */
 .code-content-block {
