@@ -179,6 +179,7 @@ Your tasks:
         { type: 'heading', text: '## What to Avoid' },
         { type: 'normal', text: '- "I hope this email finds you well"' },
         { type: 'normal', text: '- "I just wanted to follow up"' },
+        { type: 'normal', text: '- "Please let me know if you have any questions"' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
         { type: 'normal', text: '- No em dashes (—) ever' },
         { type: 'normal', text: '- Over-apologizing or over-thanking' },
@@ -231,7 +232,17 @@ Your tasks:
         { type: 'normal', text: '- Filler openers: "I\'ve always been passionate about..."' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
         { type: 'normal', text: '- No em dashes (—) ever' },
-        { type: 'normal', text: '- Ending with a question' }
+        { type: 'normal', text: '- Ending with a question' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Audience Tone Guide' },
+        { type: 'normal', text: '- Professor: precise, well-structured, evidence-backed' },
+        { type: 'normal', text: '- Recruiter: confident, specific, achievement-focused' },
+        { type: 'normal', text: '- LinkedIn: conversational, insightful, no jargon' },
+        { type: 'normal', text: '- Client: clear, direct, solution-oriented' },
+        { type: 'normal', text: '- Investor: concise, data-driven, forward-looking' },
+        { type: 'normal', text: '- Manager: respectful, direct, no over-explaining' },
+        { type: 'normal', text: '- Colleague: casual but professional, collaborative' },
+        { type: 'normal', text: '- Boss: concise, confident, no hedging' }
       ]
     },
     tip: 'Save this to templates/linkedin-post.md in your project folder.'
@@ -270,7 +281,17 @@ Your tasks:
         { type: 'normal', text: '- "In conclusion" or "In summary" to open the closing' },
         { type: 'normal', text: '- Vague claims without data' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' }
+        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Audience Tone Guide' },
+        { type: 'normal', text: '- Professor: precise, well-structured, evidence-backed' },
+        { type: 'normal', text: '- Recruiter: confident, specific, achievement-focused' },
+        { type: 'normal', text: '- LinkedIn: conversational, insightful, no jargon' },
+        { type: 'normal', text: '- Client: clear, direct, solution-oriented' },
+        { type: 'normal', text: '- Investor: concise, data-driven, forward-looking' },
+        { type: 'normal', text: '- Manager: respectful, direct, no over-explaining' },
+        { type: 'normal', text: '- Colleague: casual but professional, collaborative' },
+        { type: 'normal', text: '- Boss: concise, confident, no hedging' }
       ]
     },
     tip: 'Save this to templates/long-form.md in your project folder.'
@@ -311,7 +332,17 @@ Your tasks:
         { type: 'normal', text: '- Opening with "Today I will be presenting..."' },
         { type: 'normal', text: '- Slide titles that are just nouns' },
         { type: 'normal', text: '- Filler words: "just," "really," "very," "quite," "actually," "basically"' },
-        { type: 'normal', text: '- No em dashes (—) ever' }
+        { type: 'normal', text: '- No em dashes (—) ever' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Audience Tone Guide' },
+        { type: 'normal', text: '- Professor: precise, well-structured, evidence-backed' },
+        { type: 'normal', text: '- Recruiter: confident, specific, achievement-focused' },
+        { type: 'normal', text: '- LinkedIn: conversational, insightful, no jargon' },
+        { type: 'normal', text: '- Client: clear, direct, solution-oriented' },
+        { type: 'normal', text: '- Investor: concise, data-driven, forward-looking' },
+        { type: 'normal', text: '- Manager: respectful, direct, no over-explaining' },
+        { type: 'normal', text: '- Colleague: casual but professional, collaborative' },
+        { type: 'normal', text: '- Boss: concise, confident, no hedging' }
       ]
     },
     tip: 'Save this to templates/slides.md in your project folder.'
@@ -821,7 +852,8 @@ function updateNav() {
       if (done === total) {
         showScreen('successScreen');
       } else {
-        nextStep();
+        const remaining = total - done;
+        alert(`You still have ${remaining} step${remaining > 1 ? 's' : ''} to complete. Mark them as done or click "Skip for now" to move through them.`);
       }
     };
   } else {
