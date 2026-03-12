@@ -578,9 +578,9 @@ body {
   letter-spacing: .2px;
 }
 .copy-btn {
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
-  color: #bfdbfe;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  color: #ffffff;
   font-size: .73rem;
   font-weight: 700;
   padding: 5px 13px;
@@ -590,7 +590,7 @@ body {
   flex-shrink: 0;
   transition: all .18s;
 }
-.copy-btn:hover { background: rgba(255,255,255,.18); }
+.copy-btn:hover { background: var(--blue-d); border-color: var(--blue-d); }
 .copy-btn.copied { background: var(--green); border-color: var(--green); color: #fff; }
 .copy-btn-sm {
   background: var(--blue);

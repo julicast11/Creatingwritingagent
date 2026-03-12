@@ -724,9 +724,9 @@ function renderCard() {
     }
     html += '<div class="warn-box" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;margin-top:20px;margin-bottom:16px;">';
     html += '<span class="box-icon">✅</span>';
-    html += '<span><strong>Next:</strong> Copy the template below and paste it into your CLAUDE.md file. Use the Voice Profile output from the prompt above to fill in the sections, especially Voice &amp; Tone. This template is what Claude reads every session to write in your voice.</span>';
+    html += '<span><strong>Next:</strong> Still in <a href="https://claude.ai" target="_blank" style="color:#166534;font-weight:700;">claude.ai</a>, copy the template below and paste it into the same chat. Ask Claude to fill it in based on the voice analysis it just did. Review the result and make any changes you see fit. Once you are happy with it, copy the final version into your CLAUDE.md file (this is just a plain text file).</span>';
     html += '</div>';
-    html += '<p class="card-sub-heading">CLAUDE.md Template (copy and paste into your CLAUDE.md file):</p>';
+    html += '<p class="card-sub-heading">CLAUDE.md Template (copy and paste into Claude chat):</p>';
   }
 
   // Commands
