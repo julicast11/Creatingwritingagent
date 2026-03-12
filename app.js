@@ -458,6 +458,17 @@ Your tasks:
       '    │   └── brief-001.md',
       '    ├── drafts/',
       '    └── published/'
+    ],
+    quickLaunch: true,
+    quickLaunchCommands: [
+      'cd "Your Name Tone"',
+      'claude'
+    ],
+    quickLaunchAlias: 'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+    quickLaunchPoints: [
+      'Every time you want to use your writing agent, you just need to open the folder and run Claude. Two commands, every time.',
+      'To make it even faster, add a shortcut alias to your shell profile (~/.zshrc on Mac or ~/.bashrc on Windows/Linux). Then you just type "writer" from anywhere and your writing agent opens ready to go.',
+      'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ]
   }
 ];
@@ -760,6 +771,31 @@ function renderCard() {
       });
       html += '</tbody></table>';
     }
+  }
+
+  // Quick launch section
+  if (step.quickLaunch) {
+    html += '<p class="card-sub-heading" style="margin-top:24px;">How to Open Your Writing Agent Every Time</p>';
+    html += '<ul class="card-bullets">';
+    html += `<li>${step.quickLaunchPoints[0]}</li>`;
+    html += '</ul>';
+    step.quickLaunchCommands.forEach(cmd => {
+      html += `<div class="cmd-block">
+        <code>${escHtml(cmd)}</code>
+        <button class="copy-btn" onclick="copyCmd(this, '${escAttr(cmd)}')">Copy</button>
+      </div>`;
+    });
+    html += '<div class="tip-box" style="margin-top:14px;"><span class="box-icon">💡</span><span><strong>Shortcut:</strong> You can also drag your folder directly into the Claude Code terminal window instead of typing the path.</span></div>';
+    html += '<ul class="card-bullets" style="margin-top:14px;">';
+    html += `<li>${step.quickLaunchPoints[1]}</li>`;
+    html += '</ul>';
+    html += `<div class="cmd-block">
+      <code>${escHtml(step.quickLaunchAlias)}</code>
+      <button class="copy-btn" onclick="copyCmd(this, '${escAttr(step.quickLaunchAlias)}')">Copy</button>
+    </div>`;
+    html += '<ul class="card-bullets" style="margin-top:14px;">';
+    html += `<li>${step.quickLaunchPoints[2]}</li>`;
+    html += '</ul>';
   }
 
   // Folder structure
