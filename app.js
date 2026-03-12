@@ -173,7 +173,9 @@ Your tasks:
         { type: 'heading', text: '## Email Opening Rules' },
         { type: 'normal', text: '- Always start with "Hi Professor [Last Name]," for professors' },
         { type: 'normal', text: '- Always start with "Hi [First Name]," for colleagues, managers, and peers' },
-        { type: 'normal', text: '- Second line is always a pleasantry' },
+        { type: 'normal', text: '- Second line is always a pleasantry:' },
+        { type: 'normal', text: '  - Professors: "I hope the semester is treating you well."' },
+        { type: 'normal', text: '  - Everyone else: "I hope you\'re doing well."' },
         { type: 'normal', text: '- After the pleasantry, get straight to the point' },
         { type: 'normal', text: '' },
         { type: 'heading', text: '## What to Avoid' },
@@ -406,6 +408,7 @@ Your tasks:
       'cd "Your Name Tone"',
       'claude'
     ],
+    tip: 'Replace "Your Name Tone" with whatever you named your folder in Step 1.',
     subSections: [
       {
         heading: 'For quick tasks, just talk to it:',
@@ -731,11 +734,11 @@ function renderCard() {
 
   // Sub sections (for Run Claude step)
   if (step.subSections) {
-    step.subSections.forEach(sub => {
+    step.subSections.forEach((sub, idx) => {
       html += `<p class="card-sub-heading">${escHtml(sub.heading)}</p>`;
       html += `<div class="cmd-block" style="align-items:flex-start;">
         <code style="white-space:pre-wrap;">${escHtml(sub.example)}</code>
-        <button class="copy-btn" onclick="copyCmd(this, \`${escAttr(sub.example)}\`)">Copy</button>
+        <button class="copy-btn" data-copy-id="sub-${idx}" onclick="copyFromData(this)">Copy</button>
       </div>`;
     });
   }
@@ -791,7 +794,7 @@ function renderCard() {
     html += '</ul>';
     html += `<div class="cmd-block">
       <code>${escHtml(step.quickLaunchAlias)}</code>
-      <button class="copy-btn" onclick="copyCmd(this, '${escAttr(step.quickLaunchAlias)}')">Copy</button>
+      <button class="copy-btn" data-copy-id="alias" onclick="copyFromData(this)">Copy</button>
     </div>`;
     html += '<ul class="card-bullets" style="margin-top:14px;">';
     html += `<li>${step.quickLaunchPoints[2]}</li>`;
@@ -834,6 +837,9 @@ function renderCard() {
   card.style.animation = 'none';
   void card.offsetWidth;
   card.style.animation = '';
+
+  // Build copy data store for buttons that use data attributes
+  buildCopyData(step);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -925,6 +931,20 @@ function closeSidebar() {
 /* ════════════════════════════════════════════════════════════════
    CLIPBOARD
 ════════════════════════════════════════════════════════════════ */
+/* Store for copy data that can't be safely inlined in onclick attributes */
+const copyDataStore = {};
+
+function buildCopyData(step) {
+  if (step.subSections) {
+    step.subSections.forEach((sub, idx) => {
+      copyDataStore['sub-' + idx] = sub.example;
+    });
+  }
+  if (step.quickLaunchAlias) {
+    copyDataStore['alias'] = step.quickLaunchAlias;
+  }
+}
+
 function copyCmd(btn, text) {
   navigator.clipboard.writeText(text).then(() => {
     btn.classList.add('copied');
@@ -934,6 +954,12 @@ function copyCmd(btn, text) {
       btn.textContent = 'Copy';
     }, 1500);
   });
+}
+
+function copyFromData(btn) {
+  const id = btn.getAttribute('data-copy-id');
+  const text = copyDataStore[id];
+  if (text) copyCmd(btn, text);
 }
 
 /* ════════════════════════════════════════════════════════════════
