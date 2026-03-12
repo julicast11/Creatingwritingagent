@@ -131,6 +131,21 @@ Your tasks:
   },
   {
     id: 4,
+    title: 'Choose Your Templates',
+    shortTitle: 'Choose Templates',
+    stage: 'configure',
+    explanation: 'The next steps show four example templates: Email, LinkedIn, Long-Form, and Slides. These are starting points, not requirements.',
+    announcement: true,
+    announcementPoints: [
+      'You do not need to use all four. Only set up the ones you will actually use.',
+      'You can add more templates anytime. If you write newsletters, case studies, proposals, or anything else, create a new file in your templates/ folder.',
+      'Each template is just a markdown file. Name it clearly (e.g., templates/newsletter.md, templates/proposal.md) and follow the same structure.',
+      'The templates on the following steps are examples. Customize them to match how you actually write.'
+    ],
+    tip: 'Start with 1-2 templates you need right now. You can always add more later.'
+  },
+  {
+    id: 5,
     title: 'Fill in Email Template',
     shortTitle: 'Email Template',
     stage: 'configure',
@@ -182,7 +197,7 @@ Your tasks:
     tip: 'Save this to templates/email.md in your project folder.'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Fill in LinkedIn Post Template',
     shortTitle: 'LinkedIn Template',
     stage: 'configure',
@@ -222,7 +237,7 @@ Your tasks:
     tip: 'Save this to templates/linkedin-post.md in your project folder.'
   },
   {
-    id: 6,
+    id: 7,
     title: 'Fill in Long-Form Template',
     shortTitle: 'Long-Form Template',
     stage: 'configure',
@@ -261,7 +276,7 @@ Your tasks:
     tip: 'Save this to templates/long-form.md in your project folder.'
   },
   {
-    id: 7,
+    id: 8,
     title: 'Fill in Slides Template',
     shortTitle: 'Slides Template',
     stage: 'configure',
@@ -302,11 +317,11 @@ Your tasks:
     tip: 'Save this to templates/slides.md in your project folder.'
   },
   {
-    id: 8,
-    title: 'Fill in Your First Brief',
+    id: 9,
+    title: 'Create Your First Brief',
     shortTitle: 'First Brief',
     stage: 'configure',
-    explanation: 'A brief tells Claude exactly what to write. Fill one out for each piece of content you want to create.',
+    explanation: 'A brief is your assignment sheet for Claude. Instead of explaining what you want in a long chat message every time, you write it once in a structured file. Think of it like a creative brief you would hand to a copywriter: it tells Claude the topic, audience, format, key points, and tone so it can produce a draft that is close to final on the first try. Each piece of content gets its own brief file in content/briefs/.',
     codeContent: {
       lines: [
         { type: 'heading', text: '# Brief: [Title]' },
@@ -332,10 +347,26 @@ Your tasks:
     },
     tip: 'Save this to content/briefs/brief-001.md. Create a new brief file for each piece of content.'
   },
+  {
+    id: 10,
+    title: 'Configuration Summary',
+    shortTitle: 'Summary',
+    stage: 'configure',
+    explanation: 'Here is what you have built so far and how the pieces work together.',
+    summaryStep: true,
+    summaryPoints: [
+      { label: 'CLAUDE.md', desc: 'Your voice profile. Claude reads this every session. It is the foundation that makes everything else work. The more specific it is, the less you edit.' },
+      { label: 'Templates', desc: 'Structural rules for each content type (email, LinkedIn, long-form, slides, or any custom ones you added). They tell Claude how to format and structure the output.' },
+      { label: 'Briefs', desc: 'One-per-piece assignment sheets. They tell Claude what to write, for whom, and in what tone. You create a new brief every time you start a new piece of content.' },
+      { label: 'Drafts & Published', desc: 'Where Claude saves output. Drafts go to content/drafts/. Once you are happy with a piece, move it to content/published/ to keep things organized.' }
+    ],
+    summaryFlow: 'CLAUDE.md (who you are) + Template (how to structure it) + Brief (what to write) = a draft that sounds like you.',
+    tip: 'You can come back and update any of these files anytime. Your writing agent gets better as your files get more specific.'
+  },
 
   /* ── USE ─────────────────────────────────────────── */
   {
-    id: 9,
+    id: 11,
     title: 'Run Claude Code',
     shortTitle: 'Run Claude',
     stage: 'use',
@@ -356,11 +387,11 @@ Your tasks:
     ]
   },
   {
-    id: 10,
-    title: 'Refine Inside the Session',
-    shortTitle: 'Refine Content',
+    id: 12,
+    title: 'Refine & Train Your Agent',
+    shortTitle: 'Refine & Train',
     stage: 'use',
-    explanation: 'Once Claude writes your first draft, refine it in the same session. Here are the commands you can use:',
+    explanation: 'Once Claude writes your first draft, refine it in the same session. Tailor these commands to your own style. The more you use them, the more Claude learns what you want.',
     refineTable: [
       { say: 'make the opening more grounded', does: 'Anchors it in a specific scene' },
       { say: 'the closing feels generic, rewrite it', does: 'Forces a stronger zoom-out' },
@@ -369,6 +400,19 @@ Your tasks:
       { say: 'remove all filler words', does: 'Cleans it up' },
       { say: 'write 2 more variations of the opening', does: 'Gives you options' },
       { say: 'adjust for [new audience]', does: 'Shifts the tone' }
+    ],
+    memoryTraining: true,
+    memoryPoints: [
+      'After you refine a piece and are happy with it, tell Claude: "Remember that I prefer this style of opening" or "Save to memory that I never want bullet points in LinkedIn posts."',
+      'Claude Code has a built-in memory system. When you tell it to remember something, it saves that preference and applies it in every future session.',
+      'Over time, your agent gets trained to your voice without you needing to repeat instructions. The refinements you make today become the defaults tomorrow.',
+      'Think of it as training a writing partner: every correction teaches it something new about how you write.'
+    ],
+    memoryExamples: [
+      { say: 'Remember that I always open with a concrete scene, never an abstract statement', does: 'Saves your opening preference to memory' },
+      { say: 'Save to memory: when writing for professors, I use formal citations in APA format', does: 'Saves audience-specific formatting rule' },
+      { say: 'Remember that my LinkedIn posts should never exceed 200 words', does: 'Saves a length constraint for future posts' },
+      { say: 'Save to memory: I prefer "we" over "I" in client-facing content', does: 'Saves a pronoun preference by audience' }
     ],
     folderStructure: [
       'Your Name Tone/',
@@ -576,6 +620,31 @@ function renderCard() {
     html += `<p class="card-explanation">${step.explanation}</p>`;
   }
 
+  // Announcement (for Choose Templates step)
+  if (step.announcement && step.announcementPoints) {
+    html += '<ul class="card-bullets">';
+    step.announcementPoints.forEach(pt => {
+      html += `<li>${pt}</li>`;
+    });
+    html += '</ul>';
+  }
+
+  // Summary step (for Configure Summary)
+  if (step.summaryStep && step.summaryPoints) {
+    step.summaryPoints.forEach(pt => {
+      html += `<div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 18px;margin-bottom:10px;">`;
+      html += `<p style="font-weight:800;color:#0f172a;font-size:.9rem;margin-bottom:4px;">${escHtml(pt.label)}</p>`;
+      html += `<p style="color:#64748b;font-size:.88rem;line-height:1.6;">${escHtml(pt.desc)}</p>`;
+      html += '</div>';
+    });
+    if (step.summaryFlow) {
+      html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-top:16px;">';
+      html += '<span class="box-icon">🔗</span>';
+      html += `<span><strong>How it all connects:</strong> ${escHtml(step.summaryFlow)}</span>`;
+      html += '</div>';
+    }
+  }
+
   // Voice prompt (for CLAUDE.md step)
   if (step.voicePrompt) {
     html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-bottom:16px;">';
@@ -636,6 +705,30 @@ function renderCard() {
       html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td></tr>`;
     });
     html += '</tbody></table>';
+  }
+
+  // Memory training section
+  if (step.memoryTraining) {
+    html += '<p class="card-sub-heading" style="margin-top:24px;">Train Claude to Remember Your Preferences</p>';
+    html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-bottom:14px;">';
+    html += '<span class="box-icon">🧠</span>';
+    html += '<span><strong>Key insight:</strong> Every time you correct Claude and tell it to remember, it saves that preference for all future sessions. Your agent gets smarter the more you use it.</span>';
+    html += '</div>';
+    if (step.memoryPoints) {
+      html += '<ul class="card-bullets">';
+      step.memoryPoints.forEach(pt => {
+        html += `<li>${pt}</li>`;
+      });
+      html += '</ul>';
+    }
+    if (step.memoryExamples) {
+      html += '<p class="card-sub-heading" style="margin-top:16px;">Memory Commands You Can Use</p>';
+      html += '<table class="refine-table"><thead><tr><th>You say</th><th>What it does</th></tr></thead><tbody>';
+      step.memoryExamples.forEach(row => {
+        html += `<tr><td><code>${escHtml(row.say)}</code></td><td>${escHtml(row.does)}</td></tr>`;
+      });
+      html += '</tbody></table>';
+    }
   }
 
   // Folder structure
