@@ -1020,6 +1020,18 @@ body {
 .os-instructions li {
   padding-left: 4px;
 }
+.os-panel-intro {
+  font-size: .93rem;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.os-panel-outro {
+  font-size: .93rem;
+  color: var(--text-m);
+  margin-top: 12px;
+  line-height: 1.5;
+}
 
 @media (max-width: 480px) {
   .app-header { padding: 0 14px; }

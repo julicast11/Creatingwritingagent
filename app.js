@@ -469,35 +469,25 @@ Your tasks:
     ],
     quickLaunchAlias: {
       mac: {
-        steps: [
-          'Open Terminal and run this command to open your shell profile:',
-          'Add this alias at the bottom of the file, then save and close:',
-          'Back in Terminal, reload the profile so the alias takes effect:',
-          'Now just type <code>writer</code> from anywhere and your agent opens!'
-        ],
+        intro: 'Run this in your terminal:',
         commands: [
-          'open ~/.zshrc',
-          'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+          'echo \'alias writer="cd ~/path/to/Your\\ Name\\ Tone && claude"\' >> ~/.zshrc',
           'source ~/.zshrc'
-        ]
+        ],
+        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code> — it will open your folder and launch Claude with your voice profile ready to go.'
       },
       windows: {
-        steps: [
-          'Open Git Bash or WSL terminal and run this command to open your shell profile:',
-          'Add this alias at the bottom of the file, then save and close:',
-          'Back in the terminal, reload the profile so the alias takes effect:',
-          'Now just type <code>writer</code> from anywhere and your agent opens!'
-        ],
+        intro: 'Run this in your terminal (Git Bash or WSL):',
         commands: [
-          'nano ~/.bashrc',
-          'alias writer=\'cd ~/path/to/Your\\ Name\\ Tone && claude\'',
+          'echo \'alias writer="cd ~/path/to/Your\\ Name\\ Tone && claude"\' >> ~/.bashrc',
           'source ~/.bashrc'
-        ]
+        ],
+        outro: 'That\'s it! Now anytime you open your terminal, just type <code>writer</code> — it will open your folder and launch Claude with your voice profile ready to go.'
       }
     },
     quickLaunchPoints: [
       'Every time you want to use your writing agent, you just need to open the folder and run Claude. Two commands, every time.',
-      'To make it even faster, add a permanent shortcut alias. Pick your operating system below and follow the steps — then you just type "writer" from anywhere and your writing agent opens ready to go.',
+      'To make it even faster, add a permanent shortcut alias. Pick your operating system below — two commands and you\'re done.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ]
   }
@@ -827,38 +817,30 @@ function renderCard() {
     html += '    <button class="os-toggle-tab" onclick="switchOS(\'windows\', this)">Windows / Linux</button>';
     html += '  </div>';
 
-    // Mac instructions
+    // Mac panel
     const mac = step.quickLaunchAlias.mac;
     html += '  <div class="os-toggle-panel" id="osPanel-mac">';
-    html += '    <ol class="os-instructions">';
-    mac.steps.forEach((s, i) => {
-      html += `<li>${s}`;
-      if (mac.commands[i]) {
-        html += `<div class="cmd-block" style="margin:8px 0 4px;">
-          <code>${escHtml(mac.commands[i])}</code>
-          <button class="copy-btn" onclick="copyCmd(this, '${escAttr(mac.commands[i])}')">Copy</button>
-        </div>`;
-      }
-      html += '</li>';
+    html += `    <p class="os-panel-intro">${mac.intro}</p>`;
+    mac.commands.forEach(cmd => {
+      html += `<div class="cmd-block" style="margin:6px 0;">
+        <code>${escHtml(cmd)}</code>
+        <button class="copy-btn" onclick="copyCmd(this, '${escAttr(cmd)}')">Copy</button>
+      </div>`;
     });
-    html += '    </ol>';
+    html += `    <p class="os-panel-outro">${mac.outro}</p>`;
     html += '  </div>';
 
-    // Windows instructions
+    // Windows panel
     const win = step.quickLaunchAlias.windows;
     html += '  <div class="os-toggle-panel hidden" id="osPanel-windows">';
-    html += '    <ol class="os-instructions">';
-    win.steps.forEach((s, i) => {
-      html += `<li>${s}`;
-      if (win.commands[i]) {
-        html += `<div class="cmd-block" style="margin:8px 0 4px;">
-          <code>${escHtml(win.commands[i])}</code>
-          <button class="copy-btn" onclick="copyCmd(this, '${escAttr(win.commands[i])}')">Copy</button>
-        </div>`;
-      }
-      html += '</li>';
+    html += `    <p class="os-panel-intro">${win.intro}</p>`;
+    win.commands.forEach(cmd => {
+      html += `<div class="cmd-block" style="margin:6px 0;">
+        <code>${escHtml(cmd)}</code>
+        <button class="copy-btn" onclick="copyCmd(this, '${escAttr(cmd)}')">Copy</button>
+      </div>`;
     });
-    html += '    </ol>';
+    html += `    <p class="os-panel-outro">${win.outro}</p>`;
     html += '  </div>';
     html += '</div>';
     html += '<ul class="card-bullets" style="margin-top:14px;">';
