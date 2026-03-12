@@ -843,6 +843,7 @@ function renderCard() {
     html += `    <p class="os-panel-outro">${win.outro}</p>`;
     html += '  </div>';
     html += '</div>';
+    html += '<div class="tip-box" style="margin-top:14px;"><span class="box-icon">💡</span><span><strong>Not sure about your folder path?</strong> Open a separate chat with Claude, screenshot your folder, and ask it to give you personalized instructions for creating your shortcut command. It will write the exact command for you.</span></div>';
     html += '<ul class="card-bullets" style="margin-top:14px;">';
     html += `<li>${step.quickLaunchPoints[2]}</li>`;
     html += '</ul>';
