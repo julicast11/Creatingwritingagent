@@ -597,21 +597,38 @@ body {
 .code-content-block {
   background: #0f172a;
   border-radius: var(--r-m);
-  padding: 16px 18px;
+  padding: 18px 20px;
   margin-top: 14px;
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 600px;
 }
 .code-content-block pre {
   font-family: 'Fira Mono', 'Cascadia Code', 'Consolas', monospace;
-  font-size: .82rem;
+  font-size: .84rem;
   color: #93c5fd;
-  line-height: 1.6;
+  line-height: 1.75;
   white-space: pre;
   margin: 0;
 }
 .code-content-block .code-comment { color: #64748b; }
 .code-content-block .code-heading { color: #fbbf24; }
 .code-content-block .code-bracket { color: #94a3b8; }
+
+/* Voice prompt block (larger, with header for copy button) */
+.voice-prompt-block {
+  max-height: 520px;
+}
+.code-block-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background: #0f172a;
+  padding: 2px 0 6px;
+  z-index: 2;
+}
 
 /* ════════════════════════════════════════════
    11. TIP / WARNING BOXES
