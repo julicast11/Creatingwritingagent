@@ -683,8 +683,8 @@ function renderCard() {
     html += '<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your CLAUDE.md.</span>';
     html += '</div>';
     html += '<p class="card-sub-heading">Voice Analysis Prompt — copy and paste into Claude chat:</p>';
-    html += `<div class="code-content-block voice-prompt-block">`;
     html += `<div class="code-block-header"><button class="copy-btn" onclick="copyCmd(this, voicePromptFull)">Copy Prompt</button></div>`;
+    html += `<div class="code-content-block">`;
     html += `<pre>${escHtml(step.voicePromptText)}</pre>`;
     html += '</div>';
     if (step.voicePromptTip) {
