@@ -651,8 +651,7 @@ Your tasks:
     announcementPoints: [
       'Claude will ask you clarifying questions before writing. This is the skill working correctly. Answer them and it will draft in your voice.',
       'If the output does not sound right, tell Claude directly: "The opening is too generic, rewrite it" or "Cut 30 words" or "Adjust for a recruiter audience." It will apply your voice rules to every revision.',
-      'You can save your skill file anywhere on your computer and update it anytime. When you update your voice rules, delete the old skill in Settings and upload the new file.',
-      'Terminal path users: use the Skills path for fast turnaround on short content. Use the terminal path when you need briefs, file management, or multi-step workflows.'
+      'You can save your skill file anywhere on your computer and update it anytime. When you update your voice rules, delete the old skill in Settings and upload the new file.'
     ],
     comparisonTable: {
       heading: 'Skill vs Terminal: Which Should You Use?',
