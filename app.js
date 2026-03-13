@@ -654,6 +654,19 @@ Your tasks:
       'You can save your skill file anywhere on your computer and update it anytime. When you update your voice rules, delete the old skill in Settings and upload the new file.',
       'Terminal path users: use the Skills path for fast turnaround on short content. Use the terminal path when you need briefs, file management, or multi-step workflows.'
     ],
+    comparisonTable: {
+      heading: 'Skill vs Terminal: Which Should You Use?',
+      columns: ['', 'Terminal Path (CLAUDE.md)', 'Skills Path (SKILL.md)'],
+      rows: [
+        ['Where you work', 'Claude Code in the terminal', 'claude.ai in the browser'],
+        ['Setup', 'CLAUDE.md file in your project folder', 'SKILL.md uploaded to Settings \u2192 Skills'],
+        ['File access', 'Reads and writes files on your computer (briefs, drafts, templates)', 'No file access \u2014 everything is in the skill file or pasted into chat'],
+        ['Best for', 'Long-form content, multi-step workflows, brief-driven writing', 'Quick emails, LinkedIn posts, short-form content, on-the-go drafts'],
+        ['How it activates', 'Automatically when you run Claude Code in the folder', 'Automatically when Claude detects a writing request'],
+        ['Updating your voice', 'Edit CLAUDE.md directly in your editor', 'Delete the old skill and upload the updated file'],
+        ['Requirements', 'Claude Code installed, terminal access', 'A claude.ai account (free or Pro)']
+      ]
+    },
     tip: 'The more specific your SKILL.md, the less you will edit. Treat every revision you make in chat as a signal to update your skill file with that preference.',
     warn: 'Always review what Claude writes before you use it. Check facts, names, dates, and details. Read it out loud. If something feels off, it probably is. Claude gives you a strong starting point, but you are the editor and the final voice.'
   }
@@ -1058,6 +1071,23 @@ function renderCard() {
       }
     });
     html += '</div>';
+  }
+
+  // Comparison table
+  if (step.comparisonTable) {
+    const t = step.comparisonTable;
+    html += `<p class="card-sub-heading" style="margin-top:24px;">${escHtml(t.heading)}</p>`;
+    html += '<table class="comparison-table"><thead><tr>';
+    t.columns.forEach(col => { html += `<th>${escHtml(col)}</th>`; });
+    html += '</tr></thead><tbody>';
+    t.rows.forEach(row => {
+      html += '<tr>';
+      row.forEach((cell, i) => {
+        html += i === 0 ? `<td class="row-label">${escHtml(cell)}</td>` : `<td>${escHtml(cell)}</td>`;
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
   }
 
   // Tip

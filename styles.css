@@ -905,6 +905,51 @@ body {
   font-style: italic;
 }
 
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+  margin-top: 16px;
+  text-align: left;
+  line-height: 1.5;
+}
+.comparison-table th,
+.comparison-table td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+}
+.comparison-table thead th {
+  background: var(--header-bg);
+  color: var(--white);
+  font-weight: 700;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.comparison-table thead th:first-child {
+  background: var(--header-bg);
+}
+.comparison-table tbody tr:nth-child(even) {
+  background: var(--blue-l);
+}
+.comparison-table .row-label {
+  font-weight: 700;
+  color: var(--text-h);
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .comparison-table {
+    font-size: .75rem;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 8px 6px;
+  }
+  .comparison-table .row-label {
+    white-space: normal;
+  }
+}
+
 .btn-restart-sm {
   background: none;
   border: none;
