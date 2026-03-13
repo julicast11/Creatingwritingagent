@@ -129,7 +129,7 @@ Your tasks:
         { type: 'comment', text: '[Primary language. Any other languages and how to handle them.]' }
       ]
     },
-    warn: 'The more specific your CLAUDE.md, the less you will need to edit later. Be detailed about your voice.'
+    warn: 'The more specific your CLAUDE.md, the less you will need to edit later. Be detailed about your voice. And always review what Claude generates. Read every line. Check that the details are accurate, the tone sounds like you, and nothing was made up. Claude is a starting point, not a final draft.'
   },
   {
     id: 4,
@@ -411,6 +411,7 @@ Your tasks:
       'claude'
     ],
     tip: 'Replace "Your Name Tone" with whatever you named your folder in Step 1.',
+    warn: 'Always review what Claude writes before you use it. Check facts, names, dates, and details. Read it out loud. If something feels off, it probably is. Claude gives you a strong starting point, but you are the editor and the final voice.',
     subSections: [
       {
         heading: 'For quick tasks, just talk to it:',
@@ -614,7 +615,7 @@ Your tasks:
         { type: 'normal', text: '- Written in first person' }
       ]
     },
-    warn: 'The key difference from CLAUDE.md: your SKILL.md must include all your template content inline. claude.ai cannot read files on your computer, so everything goes in one file.'
+    warn: 'The key difference from CLAUDE.md: your SKILL.md must include all your template content inline. claude.ai cannot read files on your computer, so everything goes in one file. And always review what Claude generates. Read every line, check that the details are accurate, and make sure it sounds like you. Claude is a starting point, not a final draft.'
   },
   {
     id: 15,
@@ -653,7 +654,8 @@ Your tasks:
       'You can save your skill file anywhere on your computer and update it anytime. When you update your voice rules, delete the old skill in Settings and upload the new file.',
       'Terminal path users: use the Skills path for fast turnaround on short content. Use the terminal path when you need briefs, file management, or multi-step workflows.'
     ],
-    tip: 'The more specific your SKILL.md, the less you will edit. Treat every revision you make in chat as a signal to update your skill file with that preference.'
+    tip: 'The more specific your SKILL.md, the less you will edit. Treat every revision you make in chat as a signal to update your skill file with that preference.',
+    warn: 'Always review what Claude writes before you use it. Check facts, names, dates, and details. Read it out loud. If something feels off, it probably is. Claude gives you a strong starting point, but you are the editor and the final voice.'
   }
 ];
 
