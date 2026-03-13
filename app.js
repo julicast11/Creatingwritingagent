@@ -27,20 +27,20 @@ const ALL_STEPS = [
     title: 'Create Your Folder',
     shortTitle: 'Create Folder',
     stage: 'setup',
-    explanation: 'Create a dedicated folder for your writing agent. This folder will hold your voice profile, templates, and all content.',
+    explanation: 'Create a dedicated folder for your writing agent. This folder will hold your voice profile, templates, and all content. You can use the terminal commands below or create the folders manually using Finder (Mac) or File Explorer (Windows).',
     commands: [
       'mkdir "Your Name Tone"',
       'cd "Your Name Tone"',
       'mkdir -p content/drafts content/published content/briefs templates'
     ],
-    tip: 'Replace "Your Name Tone" with your actual name, e.g. "Juliana Writing".'
+    tip: 'Replace "Your Name Tone" with your actual name, e.g. "Juliana Writing". If you prefer not to use the terminal, just create a folder on your desktop with the same name and add these subfolders inside it: templates, content/drafts, content/published, content/briefs.'
   },
   {
     id: 2,
     title: 'Create Your Files',
     shortTitle: 'Create Files',
     stage: 'setup',
-    explanation: 'Create the core files Claude Code will read every session. These define your voice and content structure.',
+    explanation: 'Create the core files Claude Code will read every session. These define your voice and content structure. You can use the terminal commands below or create the files manually — they are just empty text files with .md extensions.',
     commands: [
       'touch CLAUDE.md',
       'touch templates/linkedin-post.md',
@@ -49,7 +49,7 @@ const ALL_STEPS = [
       'touch templates/slides.md',
       'touch content/briefs/brief-001.md'
     ],
-    tip: 'You can add more templates later as your needs grow.'
+    tip: 'If you are creating files manually, open any text editor, create a new file, and save it with the name shown above (e.g. CLAUDE.md). Make sure the file is saved inside the correct folder.'
   },
 
   /* ── CONFIGURE ─────────────────────────────────────────── */
