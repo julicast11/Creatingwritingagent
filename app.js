@@ -874,11 +874,12 @@ function renderCard() {
     }
   }
 
-  // Voice prompt (for CLAUDE.md step)
+  // Voice prompt (for CLAUDE.md / SKILL.md step)
   if (step.voicePrompt) {
+    const targetFile = step.stage === 'skills' ? 'SKILL.md' : 'CLAUDE.md';
     html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-bottom:16px;">';
     html += '<span class="box-icon">💬</span>';
-    html += '<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your CLAUDE.md.</span>';
+    html += `<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your ${targetFile}.</span>`;
     html += '</div>';
     html += '<p class="card-sub-heading">Voice Analysis Prompt (copy and paste into Claude chat):</p>';
     html += `<div class="code-block-header"><button class="copy-btn" onclick="copyCmd(this, voicePromptFull)">Copy Prompt</button></div>`;
@@ -890,9 +891,9 @@ function renderCard() {
     }
     html += '<div class="warn-box" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;margin-top:20px;margin-bottom:16px;">';
     html += '<span class="box-icon">✅</span>';
-    html += '<span><strong>Next:</strong> Still in <a href="https://claude.ai" target="_blank" style="color:#166534;font-weight:700;">claude.ai</a>, copy the template below and paste it into the same chat. Ask Claude to fill it in based on the voice analysis it just did. Review the result and make any changes you see fit. Once you are happy with it, copy the final version into your CLAUDE.md file (this is just a plain text file).</span>';
+    html += `<span><strong>Next:</strong> Still in <a href="https://claude.ai" target="_blank" style="color:#166534;font-weight:700;">claude.ai</a>, copy the template below and paste it into the same chat. Ask Claude to fill it in based on the voice analysis it just did. Review the result and make any changes you see fit. Once you are happy with it, copy the final version into your ${targetFile} file (this is just a plain text file).</span>`;
     html += '</div>';
-    html += '<p class="card-sub-heading">CLAUDE.md Template (copy and paste into Claude chat):</p>';
+    html += `<p class="card-sub-heading">${targetFile} Template (copy and paste into Claude chat):</p>`;
   }
 
   // Commands
