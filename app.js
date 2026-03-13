@@ -491,7 +491,8 @@ Your tasks:
       'Every time you want to use your writing agent, you just need to open the folder and run Claude. Two commands, every time.',
       'To make it even faster, add a permanent shortcut alias. Pick your operating system below. Two commands and you\'re done.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
-    ]
+    ],
+    tip: 'Want to use your voice in claude.ai chat too? Continue to Step 13 to set up the Skills path. Your voice profile is already done, so it only takes 10 minutes.'
   },
 
   /* ── SKILLS PATH ─────────────────────────────────────────── */
@@ -877,9 +878,10 @@ function renderCard() {
   // Voice prompt (for CLAUDE.md / SKILL.md step)
   if (step.voicePrompt) {
     const targetFile = step.stage === 'skills' ? 'SKILL.md' : 'CLAUDE.md';
+    const chatClarification = step.stage === 'skills' ? '' : ' (the chat, not Claude Code)';
     html += '<div class="warn-box" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;margin-bottom:16px;">';
     html += '<span class="box-icon">💬</span>';
-    html += `<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a> (the chat, not Claude Code) and paste the prompt below with your content samples. Use the Voice Profile output to fill in your ${targetFile}.</span>`;
+    html += `<span><strong>First:</strong> Open <a href="https://claude.ai" target="_blank" style="color:#1d4ed8;font-weight:700;">claude.ai</a>${chatClarification} and paste the prompt below with your content samples. Use the Voice Profile output to fill in your ${targetFile}.</span>`;
     html += '</div>';
     html += '<p class="card-sub-heading">Voice Analysis Prompt (copy and paste into Claude chat):</p>';
     html += `<div class="code-block-header"><button class="copy-btn" onclick="copyCmd(this, voicePromptFull)">Copy Prompt</button></div>`;
@@ -1119,16 +1121,7 @@ function updateNav() {
   const nextBtn = document.getElementById('navNext');
   if (currentStepIndex === ALL_STEPS.length - 1) {
     nextBtn.textContent = 'Finish →';
-    nextBtn.onclick = () => {
-      const total = ALL_STEPS.length;
-      const done = ALL_STEPS.filter(s => progress[s.id]).length;
-      if (done === total) {
-        showScreen('successScreen');
-      } else {
-        const remaining = total - done;
-        alert(`You still have ${remaining} step${remaining > 1 ? 's' : ''} to complete. Mark them as done or click "Skip for now" to move through them.`);
-      }
-    };
+    nextBtn.onclick = () => showScreen('successScreen');
   } else {
     nextBtn.textContent = 'Next →';
     nextBtn.onclick = nextStep;
