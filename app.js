@@ -24,42 +24,6 @@ const ALL_STEPS = [
   /* ── SETUP ─────────────────────────────────────────────── */
   {
     id: 1,
-    title: 'Install Claude Code',
-    shortTitle: 'Install',
-    stage: 'setup',
-    explanation: 'Install Claude Code on your machine. Pick the method that matches your operating system. If you already have Claude Code installed, skip to the next step.',
-    osToggle: true,
-    osOptions: {
-      mac: {
-        intro: 'Open Terminal and run:',
-        commands: [
-          'curl -fsSL https://claude.ai/install.sh | bash'
-        ],
-        outro: 'This installs Claude Code and keeps it updated automatically in the background.<br/><br/><strong>Alternative — Homebrew:</strong> If you use Homebrew, you can install with <code>brew install --cask claude-code</code> instead. Note: Homebrew installations do not auto-update. Run <code>brew upgrade claude-code</code> periodically to get the latest features and security fixes.'
-      },
-      windows: {
-        intro: 'Open PowerShell and run:',
-        commands: [
-          'irm https://claude.ai/install.ps1 | iex'
-        ],
-        outro: 'Requires <a href="https://git-scm.com/downloads/win" target="_blank" style="color:var(--blue);">Git for Windows</a>. Install it first if you do not have it. This method auto-updates in the background.<br/><br/><strong>Alternative — WinGet:</strong> If you use WinGet (built into Windows 10/11), you can install with <code>winget install Anthropic.ClaudeCode</code> instead. WinGet installations do not auto-update. Run <code>winget upgrade Anthropic.ClaudeCode</code> periodically to stay current.<br/><br/><strong>Alternative — Windows CMD:</strong> If you prefer the classic command prompt: <code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code>'
-      }
-    },
-    tip: 'The native install (curl / PowerShell) is recommended because it auto-updates. Homebrew and WinGet work but require manual updates. If you prefer npm, you can also run: npm install -g @anthropic-ai/claude-code'
-  },
-  {
-    id: 2,
-    title: 'Log In to Your Account',
-    shortTitle: 'Log In',
-    stage: 'setup',
-    explanation: 'Claude Code requires an account. Open your terminal and run the command below. You will be prompted to log in through your browser. You can use a Claude Pro, Max, Teams, or Enterprise subscription, or a Claude Console account with API credits.',
-    commands: [
-      'claude'
-    ],
-    tip: 'You only need to log in once. After that, your credentials are stored and Claude Code will remember you. If you need to switch accounts later, type /login inside a Claude Code session.'
-  },
-  {
-    id: 3,
     title: 'Create Your Folder',
     shortTitle: 'Create Folder',
     stage: 'setup',
@@ -72,7 +36,7 @@ const ALL_STEPS = [
     tip: 'Replace "Your Name Tone" with your actual name, e.g. "Juliana Writing". If you prefer not to use the terminal, just create a folder on your desktop with the same name and add these subfolders inside it: templates, content/drafts, content/published, content/briefs.'
   },
   {
-    id: 4,
+    id: 2,
     title: 'Create Your Files',
     shortTitle: 'Create Files',
     stage: 'setup',
@@ -90,7 +54,7 @@ const ALL_STEPS = [
 
   /* ── CONFIGURE ─────────────────────────────────────────── */
   {
-    id: 5,
+    id: 3,
     title: 'Fill in CLAUDE.md',
     shortTitle: 'CLAUDE.md',
     stage: 'configure',
@@ -168,7 +132,7 @@ Your tasks:
     warn: 'The more specific your CLAUDE.md, the less you will need to edit later. Be detailed about your voice. And always review what Claude generates. Read every line. Check that the details are accurate, the tone sounds like you, and nothing was made up. Claude is a starting point, not a final draft.'
   },
   {
-    id: 6,
+    id: 4,
     title: 'Choose Your Templates',
     shortTitle: 'Choose Templates',
     stage: 'configure',
@@ -183,7 +147,7 @@ Your tasks:
     tip: 'Start with 1-2 templates you need right now. You can always add more later.'
   },
   {
-    id: 7,
+    id: 5,
     title: 'Fill in Email Template',
     shortTitle: 'Email Template',
     stage: 'configure',
@@ -238,7 +202,7 @@ Your tasks:
     tip: 'Save this to templates/email.md in your project folder.'
   },
   {
-    id: 8,
+    id: 6,
     title: 'Fill in LinkedIn Post Template',
     shortTitle: 'LinkedIn Template',
     stage: 'configure',
@@ -288,7 +252,7 @@ Your tasks:
     tip: 'Save this to templates/linkedin-post.md in your project folder.'
   },
   {
-    id: 9,
+    id: 7,
     title: 'Fill in Long-Form Template',
     shortTitle: 'Long-Form Template',
     stage: 'configure',
@@ -337,7 +301,7 @@ Your tasks:
     tip: 'Save this to templates/long-form.md in your project folder.'
   },
   {
-    id: 10,
+    id: 8,
     title: 'Fill in Slides Template',
     shortTitle: 'Slides Template',
     stage: 'configure',
@@ -388,7 +352,7 @@ Your tasks:
     tip: 'Save this to templates/slides.md in your project folder.'
   },
   {
-    id: 11,
+    id: 9,
     title: 'Create Your First Brief',
     shortTitle: 'First Brief',
     stage: 'configure',
@@ -419,7 +383,7 @@ Your tasks:
     tip: 'Save this to content/briefs/brief-001.md. Create a new brief file for each piece of content.'
   },
   {
-    id: 12,
+    id: 10,
     title: 'Configuration Summary',
     shortTitle: 'Summary',
     stage: 'configure',
@@ -437,7 +401,7 @@ Your tasks:
 
   /* ── USE ─────────────────────────────────────────── */
   {
-    id: 13,
+    id: 11,
     title: 'Run Claude Code',
     shortTitle: 'Run Claude',
     stage: 'use',
@@ -446,7 +410,7 @@ Your tasks:
       'cd "Your Name Tone"',
       'claude'
     ],
-    tip: 'Replace "Your Name Tone" with whatever you named your folder in Step 3.',
+    tip: 'Replace "Your Name Tone" with whatever you named your folder in Step 1.',
     warn: 'Always review what Claude writes before you use it. Check facts, names, dates, and details. Read it out loud. If something feels off, it probably is. Claude gives you a strong starting point, but you are the editor and the final voice.',
     subSections: [
       {
@@ -460,7 +424,7 @@ Your tasks:
     ]
   },
   {
-    id: 14,
+    id: 12,
     title: 'Refine & Train Your Agent',
     shortTitle: 'Refine & Train',
     stage: 'use',
@@ -529,12 +493,12 @@ Your tasks:
       'To make it even faster, add a permanent shortcut alias. Pick your operating system below. Two commands and you\'re done.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ],
-    tip: 'Want to use your voice in claude.ai chat too? Continue to Step 15 to set up the Skills path. Your voice profile is already done, so it only takes 10 minutes.'
+    tip: 'Want to use your voice in claude.ai chat too? Continue to Step 13 to set up the Skills path. Your voice profile is already done, so it only takes 10 minutes.'
   },
 
   /* ── SKILLS PATH ─────────────────────────────────────────── */
   {
-    id: 15,
+    id: 13,
     title: 'What Is a Skill?',
     shortTitle: 'What Is a Skill',
     stage: 'skills',
@@ -546,14 +510,14 @@ Your tasks:
       'Both paths produce the same result: Claude writing in your voice. The difference is where you work. Terminal path = Claude Code. Chat path = claude.ai.',
       'You can use both. Many people set up both paths and pick whichever fits the task: terminal for longer structured pieces with briefs and files, chat for quick emails, LinkedIn posts, and short-form content.'
     ],
-    tip: 'If you already completed Steps 1–14 (the terminal path), you can do Steps 15–18 in 10 minutes. Your SKILL.md will be a self-contained version of your CLAUDE.md.'
+    tip: 'If you already completed Steps 1–12 (the terminal path), you can do Steps 13–16 in 10 minutes. Your SKILL.md will be a self-contained version of your CLAUDE.md.'
   },
   {
-    id: 16,
+    id: 14,
     title: 'Build Your SKILL.md',
     shortTitle: 'Build SKILL.md',
     stage: 'skills',
-    explanation: 'A SKILL.md file works like a CLAUDE.md, but it is self-contained — all your voice rules and templates are embedded in one file because claude.ai cannot access your file system. Use the same voice analysis prompt from Step 5 if you have not already done it. Then use the template below to build your SKILL.md.',
+    explanation: 'A SKILL.md file works like a CLAUDE.md, but it is self-contained — all your voice rules and templates are embedded in one file because claude.ai cannot access your file system. Use the same voice analysis prompt from Step 3 if you have not already done it. Then use the template below to build your SKILL.md.',
     voicePrompt: true,
     voicePromptText: `You are a brand voice analyst who studies writing patterns to create detailed voice profiles for content teams.
 
@@ -592,7 +556,7 @@ Your tasks:
    - Any signature phrases or patterns?
 
 5. Write a "Voice Profile" (150-200 words) formatted as clear rules, not descriptions. Example: "Use short sentences. Max 2 sentences per paragraph. Never say 'utilize'. Say 'use' instead."`,
-    voicePromptTip: 'If you already ran this prompt in Step 5, use the output you already have. No need to run it again.',
+    voicePromptTip: 'If you already ran this prompt in Step 3, use the output you already have. No need to run it again.',
     codeContent: {
       lines: [
         { type: 'comment', text: '---' },
@@ -654,7 +618,7 @@ Your tasks:
     warn: 'The key difference from CLAUDE.md: your SKILL.md must include all your template content inline. claude.ai cannot read files on your computer, so everything goes in one file. And always review what Claude generates. Read every line, check that the details are accurate, and make sure it sounds like you. Claude is a starting point, not a final draft.'
   },
   {
-    id: 17,
+    id: 15,
     title: 'Upload to claude.ai',
     shortTitle: 'Upload to claude.ai',
     stage: 'skills',
@@ -668,7 +632,7 @@ Your tasks:
     warn: 'Make sure your SKILL.md has the YAML frontmatter at the top (the block between the --- lines). Without it, claude.ai will not read the description and the skill may not auto-trigger.'
   },
   {
-    id: 18,
+    id: 16,
     title: 'Use It in Chat',
     shortTitle: 'Use in Chat',
     stage: 'skills',
@@ -696,7 +660,7 @@ Your tasks:
 ];
 
 /* Voice prompt text for copy button */
-const voicePromptFull = ALL_STEPS.find(s => s.id === 5).voicePromptText;
+const voicePromptFull = ALL_STEPS.find(s => s.id === 3).voicePromptText;
 
 /* ════════════════════════════════════════════════════════════════
    STATE
@@ -736,7 +700,7 @@ function startWizard() {
 
 function startAtSkills() {
   localStorage.setItem(LS_STARTED, 'true');
-  const idx = ALL_STEPS.findIndex(s => s.id === 15);
+  const idx = ALL_STEPS.findIndex(s => s.id === 13);
   if (idx >= 0) currentStepIndex = idx;
   saveState();
   showScreen('wizardScreen');
@@ -943,40 +907,6 @@ function renderCard() {
     html += `<span><strong>Next:</strong> Still in <a href="https://claude.ai" target="_blank" style="color:#166534;font-weight:700;">claude.ai</a>, copy the template below and paste it into the same chat. Ask Claude to fill it in based on the voice analysis it just did. Review the result and make any changes you see fit. Once you are happy with it, copy the final version into your ${targetFile} file (this is just a plain text file).</span>`;
     html += '</div>';
     html += `<p class="card-sub-heading">${targetFile} Template (copy and paste into Claude chat):</p>`;
-  }
-
-  // OS toggle (for Install step)
-  if (step.osToggle && step.osOptions) {
-    html += '<div class="os-toggle-wrap">';
-    html += '  <div class="os-toggle-tabs">';
-    html += '    <button class="os-toggle-tab os-toggle-active" onclick="switchOS(\'mac\', this)">Mac / Linux</button>';
-    html += '    <button class="os-toggle-tab" onclick="switchOS(\'windows\', this)">Windows</button>';
-    html += '  </div>';
-
-    const macOpt = step.osOptions.mac;
-    html += '  <div class="os-toggle-panel" id="osPanel-mac">';
-    html += `    <p class="os-panel-intro">${macOpt.intro}</p>`;
-    macOpt.commands.forEach(cmd => {
-      html += `<div class="cmd-block" style="margin:6px 0;">
-        <code>${escHtml(cmd)}</code>
-        <button class="copy-btn" onclick="copyCmd(this, '${escAttr(cmd)}')">Copy</button>
-      </div>`;
-    });
-    html += `    <p class="os-panel-outro">${macOpt.outro}</p>`;
-    html += '  </div>';
-
-    const winOpt = step.osOptions.windows;
-    html += '  <div class="os-toggle-panel hidden" id="osPanel-windows">';
-    html += `    <p class="os-panel-intro">${winOpt.intro}</p>`;
-    winOpt.commands.forEach(cmd => {
-      html += `<div class="cmd-block" style="margin:6px 0;">
-        <code>${escHtml(cmd)}</code>
-        <button class="copy-btn" onclick="copyCmd(this, '${escAttr(cmd)}')">Copy</button>
-      </div>`;
-    });
-    html += `    <p class="os-panel-outro">${winOpt.outro}</p>`;
-    html += '  </div>';
-    html += '</div>';
   }
 
   // Commands
