@@ -654,7 +654,7 @@ Your tasks:
       'You can save your skill file anywhere on your computer and update it anytime.'
     ],
     comparisonTable: {
-      heading: 'Skill vs Terminal: Which Should You Use?',
+      heading: 'Quick Reference: Skill vs Terminal',
       columns: ['', 'Terminal Path (CLAUDE.md)', 'Skills Path (SKILL.md)'],
       rows: [
         ['Where you work', 'Claude Code in the terminal', 'claude.ai in the browser'],
