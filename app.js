@@ -698,6 +698,15 @@ function startWizard() {
   renderAll();
 }
 
+function startAtSkills() {
+  localStorage.setItem(LS_STARTED, 'true');
+  const idx = ALL_STEPS.findIndex(s => s.id === 13);
+  if (idx >= 0) currentStepIndex = idx;
+  saveState();
+  showScreen('wizardScreen');
+  renderAll();
+}
+
 function restartWizard() {
   if (!confirm('This will reset all your progress. Continue?')) return;
   localStorage.removeItem(LS_PROGRESS);
@@ -787,7 +796,7 @@ function renderSidebar() {
     if (active) cls += ' is-active';
     else if (done) cls += ' is-done';
 
-    const dotContent = done ? '✓' : (active ? '' : '');
+    const dotContent = done ? '✓' : String(step.id);
     return `<li class="${cls}" onclick="goToStep(${step.id})">
       <span class="sub-dot">${dotContent}</span>
       <span>${step.shortTitle}</span>
