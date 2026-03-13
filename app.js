@@ -10,12 +10,13 @@ const LS_STARTED  = 'writing_agent_started';
 /* ════════════════════════════════════════════════════════════════
    STAGE & STEP DATA
 ════════════════════════════════════════════════════════════════ */
-const STAGE_ORDER = ['setup', 'configure', 'use'];
+const STAGE_ORDER = ['setup', 'configure', 'use', 'skills'];
 
 const STAGE_META = {
   setup:     { title: 'Setup',     sub: 'Create your project folder and files.' },
   configure: { title: 'Configure', sub: 'Fill in your voice profile, templates, and briefs.' },
-  use:       { title: 'Use',       sub: 'Run Claude Code and start writing content.' }
+  use:       { title: 'Use',       sub: 'Run Claude Code and start writing content.' },
+  skills:    { title: 'Skills Path', sub: 'Use your voice in claude.ai chat — no terminal needed.' }
 };
 
 const ALL_STEPS = [
@@ -491,6 +492,167 @@ Your tasks:
       'To make it even faster, add a permanent shortcut alias. Pick your operating system below. Two commands and you\'re done.',
       'Once Claude starts, it automatically reads your CLAUDE.md and knows your voice, rules, and templates. You just start talking to it.'
     ]
+  },
+
+  /* ── SKILLS PATH ─────────────────────────────────────────── */
+  {
+    id: 13,
+    title: 'What Is a Skill?',
+    shortTitle: 'What Is a Skill',
+    stage: 'skills',
+    explanation: 'A Skill is a markdown file that tells Claude who you are, how you write, and what rules to follow — automatically, in every chat conversation. Instead of pasting instructions every time, you upload the file once and Claude loads it silently whenever you start writing.',
+    announcement: true,
+    announcementPoints: [
+      'A Skill is like a permanent instruction set that lives in claude.ai Settings. Once uploaded, it is always on — you never have to paste your voice rules again.',
+      'The terminal path uses a CLAUDE.md file that Claude Code reads at the start of every session. The Skills path does the same thing, but for claude.ai chat instead of the terminal.',
+      'Both paths produce the same result: Claude writing in your voice. The difference is where you work. Terminal path = Claude Code. Chat path = claude.ai.',
+      'You can use both. Many people set up both paths and pick whichever fits the task: terminal for longer structured pieces with briefs and files, chat for quick emails, LinkedIn posts, and short-form content.'
+    ],
+    tip: 'If you already completed Steps 1–12 (the terminal path), you can do Steps 13–16 in 10 minutes. Your SKILL.md will be a self-contained version of your CLAUDE.md.'
+  },
+  {
+    id: 14,
+    title: 'Build Your SKILL.md',
+    shortTitle: 'Build SKILL.md',
+    stage: 'skills',
+    explanation: 'A SKILL.md file works like a CLAUDE.md, but it is self-contained — all your voice rules and templates are embedded in one file because claude.ai cannot access your file system. Use the same voice analysis prompt from Step 3 if you have not already done it. Then use the template below to build your SKILL.md.',
+    voicePrompt: true,
+    voicePromptText: `You are a brand voice analyst who studies writing patterns to create detailed voice profiles for content teams.
+
+I'm going to give you 3-5 pieces of my best content. Analyze them and extract my unique writing voice.
+
+Here are my content samples:
+
+[PASTE 3-5 OF YOUR BEST POSTS, ARTICLES, OR NEWSLETTERS HERE. Pick the ones that sound most "like you" and performed well]
+
+Your tasks:
+
+1. Analyze my writing patterns across all samples. Identify:
+   - Average sentence length (short and punchy? Long and flowing? Mixed?)
+   - Paragraph structure (how many sentences per paragraph?)
+   - Opening style (how do I start pieces? Questions? Statements? Stories?)
+   - Transition style (how do I move between ideas?)
+   - Closing style (how do I end pieces?)
+
+2. Identify my tone markers:
+   - Formality level (1-10 scale, with examples)
+   - Humor style (if any)
+   - Energy level (calm? High energy? Conversational?)
+   - Confidence style (authoritative? Humble? Direct?)
+
+3. Extract my vocabulary patterns:
+   - Words and phrases I use repeatedly
+   - Words and phrases I NEVER use
+   - Industry jargon I use vs. avoid
+   - Emoji usage (yes/no, which ones, how often?)
+
+4. Identify my structural habits:
+   - Do I use bullet points or prose?
+   - Do I use bold/italics? How?
+   - Do I use questions to the reader?
+   - Do I use "you" or "we" or "I"?
+   - Any signature phrases or patterns?
+
+5. Write a "Voice Profile" (150-200 words) formatted as clear rules, not descriptions. Example: "Use short sentences. Max 2 sentences per paragraph. Never say 'utilize'. Say 'use' instead."`,
+    voicePromptTip: 'If you already ran this prompt in Step 3, use the output you already have. No need to run it again.',
+    codeContent: {
+      lines: [
+        { type: 'comment', text: '---' },
+        { type: 'normal', text: 'name: [your-name]-voice' },
+        { type: 'normal', text: 'description: Apply [Your Name]\'s personal writing voice to any content. Trigger whenever they ask to write, draft, edit, rewrite, or refine ANYTHING. Always ask clarifying questions before drafting.' },
+        { type: 'comment', text: '---' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '# [Your Name] — Writing Voice and Instructions' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Who I Am' },
+        { type: 'comment', text: '[Your role, school, or job. Key credentials. Mission statement.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## My Background' },
+        { type: 'comment', text: '[Real experiences Claude can draw from when writing. Be specific.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## My Audience' },
+        { type: 'comment', text: '[Who reads your content and what they care about.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Workflow — Always Follow This' },
+        { type: 'normal', text: 'Before writing ANY content:' },
+        { type: 'normal', text: '1. Ask clarifying questions first. Ask about: goal, audience, key message, specific details, length, format.' },
+        { type: 'normal', text: '2. Present a brief outline or plan for approval.' },
+        { type: 'normal', text: '3. Only begin writing after the plan is confirmed.' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Voice and Tone' },
+        { type: 'comment', text: '[Paste the Voice Profile output from the prompt above here.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Hard Rules' },
+        { type: 'normal', text: '- No buzzwords: [list yours]' },
+        { type: 'normal', text: '- No filler words: "just," "really," "very," "quite," "actually," "basically"' },
+        { type: 'normal', text: '- No em dashes ever. Use periods or commas instead.' },
+        { type: 'normal', text: '- Prose only. No bullet points in my writing voice. Ever.' },
+        { type: 'normal', text: '- First person throughout.' },
+        { type: 'comment', text: '- [Add your own rules]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Template: LinkedIn Post' },
+        { type: 'comment', text: '[Paste the contents of your linkedin-post.md template here, or write your own rules.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Template: Email' },
+        { type: 'comment', text: '[Paste the contents of your email.md template here, or write your own rules.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Template: Long-Form' },
+        { type: 'comment', text: '[Paste the contents of your long-form.md template here, or write your own rules.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Template: Slides' },
+        { type: 'comment', text: '[Paste the contents of your slides.md template here, or write your own rules.]' },
+        { type: 'normal', text: '' },
+        { type: 'heading', text: '## Checklist Before Outputting' },
+        { type: 'normal', text: '- Clarifying questions asked and plan approved before writing' },
+        { type: 'normal', text: '- Opens with a declarative statement, not a question' },
+        { type: 'normal', text: '- Rhythm alternates: building then punchy landing' },
+        { type: 'normal', text: '- Paragraphs connect via echo transitions' },
+        { type: 'normal', text: '- Closing zooms out to collective / forward vision' },
+        { type: 'normal', text: '- No filler words or buzzwords' },
+        { type: 'normal', text: '- No em dashes anywhere, not one' },
+        { type: 'normal', text: '- Written in first person' }
+      ]
+    },
+    warn: 'The key difference from CLAUDE.md: your SKILL.md must include all your template content inline. claude.ai cannot read files on your computer, so everything goes in one file.'
+  },
+  {
+    id: 15,
+    title: 'Upload to claude.ai',
+    shortTitle: 'Upload to claude.ai',
+    stage: 'skills',
+    explanation: 'Once your SKILL.md is ready, upload it to claude.ai in three steps. After that, Claude will automatically apply your voice in every writing conversation — no commands needed.',
+    stepList: [
+      { step: '1', label: 'Go to claude.ai', detail: 'Open claude.ai in your browser and sign in.' },
+      { step: '2', label: 'Open Settings → Skills', detail: 'Click your profile icon in the top right, then Settings, then Skills in the left menu.' },
+      { step: '3', label: 'Click the + button', detail: 'Click the plus icon next to "My Skills" and upload your SKILL.md file.' }
+    ],
+    tip: 'The skill is active immediately after upload. Toggle it on or off anytime from Settings → Skills. You can also update the file anytime by deleting the old version and uploading the new one.',
+    warn: 'Make sure your SKILL.md has the YAML frontmatter at the top (the block between the --- lines). Without it, claude.ai will not read the description and the skill may not auto-trigger.'
+  },
+  {
+    id: 16,
+    title: 'Use It in Chat',
+    shortTitle: 'Use in Chat',
+    stage: 'skills',
+    explanation: 'Your skill is live. You do not need to call it or activate it manually. Just start writing naturally in any claude.ai conversation and the skill auto-triggers. Here is what to expect and how to get the most out of it.',
+    subSections: [
+      {
+        heading: 'For a quick post or email, just say:',
+        example: 'Write a LinkedIn post about my experience returning to my co-op for a second term'
+      },
+      {
+        heading: 'For a longer piece with specific details, give more context:',
+        example: 'Write a cover letter for a consulting associate role at BCG.\nAudience: recruiting team.\nKey angle: my engineering background and two consulting co-ops.\nTone: confident, not stiff.\nLength: one page.'
+      }
+    ],
+    announcement: true,
+    announcementPoints: [
+      'Claude will ask you clarifying questions before writing. This is the skill working correctly. Answer them and it will draft in your voice.',
+      'If the output does not sound right, tell Claude directly: "The opening is too generic, rewrite it" or "Cut 30 words" or "Adjust for a recruiter audience." It will apply your voice rules to every revision.',
+      'You can save your skill file anywhere on your computer and update it anytime. When you update your voice rules, delete the old skill in Settings and upload the new file.',
+      'Terminal path users: use the Skills path for fast turnaround on short content. Use the terminal path when you need briefs, file management, or multi-step workflows.'
+    ],
+    tip: 'The more specific your SKILL.md, the less you will edit. Treat every revision you make in chat as a signal to update your skill file with that preference.'
   }
 ];
 
@@ -757,6 +919,16 @@ function renderCard() {
       }
     });
     html += '</pre></div>';
+  }
+
+  // Step list (for Upload step)
+  if (step.stepList) {
+    step.stepList.forEach(item => {
+      html += `<div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 18px;margin-bottom:10px;">`;
+      html += `<p style="font-weight:800;color:#0f172a;font-size:.9rem;margin-bottom:4px;">Step ${escHtml(item.step)}: ${escHtml(item.label)}</p>`;
+      html += `<p style="color:#64748b;font-size:.88rem;line-height:1.6;">${escHtml(item.detail)}</p>`;
+      html += '</div>';
+    });
   }
 
   // Sub sections (for Run Claude step)
